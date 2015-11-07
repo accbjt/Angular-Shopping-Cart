@@ -1,0 +1,50 @@
+.row.shopping-cart-container {
+	margin-top: 35px;
+}
+
+.shopping-cart-icon {
+	width: 30px;
+}
+
+.shopping-cart {
+	pointer-events: none;
+}
+
+.shopping-cart-total {
+	margin: 10px;
+}
+
+.add-to-cart {
+	margin-left: 15px;
+}
+
+.panel input[type="text"] {
+	width: 50px;
+  margin: 0px auto 10px auto;
+}
+
+.panel img.product-image {
+	vertical-align: initial;
+	width: 100px;
+}
+
+.product-info-section {
+	display: inline-block;
+  height: 75px;
+  width: 156px;
+  background-color: white;
+  position: relative;
+}
+
+.update-qty {
+	margin-left: 16px;
+}
+
+.checkout {
+	margin-left: 22px;
+  margin-top: 15px;
+}
+
+.remove-item {
+	margin-left: 10px;
+}

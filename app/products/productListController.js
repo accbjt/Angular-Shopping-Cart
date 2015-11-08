@@ -3,9 +3,9 @@
 	
 	angular
 		.module("shoppingCartApp")
-		.controller("ProductListController", ['$http','$localStorage', ProductListController]);
+		.controller("ProductListController", ['$scope','$http','$localStorage', ProductListController]);
 
-	function ProductListController($http, $localStorage){
+	function ProductListController($scope, $http, $localStorage){
 		var vm = this;
 
 		$http.get('Products.json').success(function(data) {
@@ -28,6 +28,8 @@
 			}else{
 				vm.$storage.inCart[this.products[index].name] = {indexId: index, count:1};
 			}
+
+			$scope.$parent.$broadcast('test');
 		};
 
 	};

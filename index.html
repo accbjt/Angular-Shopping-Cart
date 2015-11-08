@@ -112,7 +112,7 @@
         				<h5>Item Name</h5>
         				<p>{{ product.name }}</p>
         				<h6 class="subheader">${{ product.price }}</h6>
-        				<input type="text" name="qty" value="1">
+        				<input type="text" name="qty" value="{{ product.count }}">
         				<div class="button update-qty">Update Qty</div>
         				<div class="button alert remove-item">Remove Item</div>
         			</div>

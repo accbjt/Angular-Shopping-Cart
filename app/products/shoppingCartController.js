@@ -22,6 +22,13 @@
 			updateVmValues();
 		});
 
+		vm.updateQty = function(e, item){
+			var qtyInputElement = e.currentTarget.previousElementSibling;
+
+			vm.$storage.inCart[item.name].count = parseInt(e.currentTarget.previousElementSibling.value);
+   		updateVmValues();
+		};
+
 		vm.removeItem = function(item){
 			delete vm.$storage.inCart[item];
 			vm.inCart = createInCartProducts();

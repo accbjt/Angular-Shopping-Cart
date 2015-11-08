@@ -109,7 +109,7 @@
         				<h6 class="subheader">${{ product.price }}</h6>
         				<input type="text" name="qty" value="{{ product.count }}">
         				<div class="button update-qty">Update Qty</div>
-        				<div class="button alert remove-item">Remove Item</div>
+        				<div class="button alert remove-item" ng-click="vm.removeItem(product.name)">Remove Item</div>
         			</div>
         		</div>
 

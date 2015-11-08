@@ -20,6 +20,12 @@
 			updateVmValues();
 		});
 
+		vm.removeItem = function(item){
+			delete vm.$storage.inCart[item];
+			vm.inCart = createInCartProducts();
+			updateVmValues();
+		};
+
 		function updateVmValues(){
 			vm.inCart = createInCartProducts();
    		vm.totalItemCount = itemCount();

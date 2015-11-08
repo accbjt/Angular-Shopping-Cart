@@ -10,7 +10,26 @@
 
 		vm.$storage = $localStorage;
 
-		vm.createInCartProducts = function(){
+		$http.get('Products.json').success(function(data) {
+   		vm.products = data.products;
+   		updateVmValues();
+		});
+
+		$scope.$on('test', function(e, stuff){
+			vm.inCart = createInCartProducts();
+			updateVmValues();
+		});
+
+		function updateVmValues(){
+			vm.inCart = createInCartProducts();
+   		vm.totalItemCount = itemCount();
+   		vm.subtotal = subtotal();
+   		vm.shippingCharge = 8.00;
+   		vm.taxCharge = taxCharge();
+   		vm.totalAmount = totalAmount();
+		};
+
+		function createInCartProducts(){
 			var products = [];
 
 			for (var property in vm.$storage.inCart) {
@@ -27,7 +46,7 @@
 			return products;
 		};
 
-		vm.itemCount = function(){
+		function itemCount(){
 			var items = vm.inCart.map(function(item){
 				return item.count
 			});
@@ -39,16 +58,29 @@
 			return items
 		};
 
-		$http.get('Products.json').success(function(data) {
-   		vm.products = data.products;
-   		vm.inCart = vm.createInCartProducts();
-   		vm.totalItemCount = vm.itemCount();
-		});
+		function subtotal(){
+			var items = vm.inCart.map(function(item){
+				return item.price*item.count;
+			});
 
-		$scope.$on('test', function(e, stuff){
-			vm.inCart = vm.createInCartProducts();
-			vm.totalItemCount = vm.itemCount();
-		});
+			items = items.reduce(function(previousValue, currentValue, index, array) {
+				return previousValue + currentValue;
+			});
+
+			return Math.round(items*100)/100;
+		};
+
+		function taxCharge(){
+			var items = subtotal()*0.0875;
+
+			return Math.round(items*100)/100;
+		};
+
+		function totalAmount(){
+			var items = subtotal()+vm.shippingCharge+taxCharge();
+
+			return Math.round(items*100)/100;
+		};
 
 	};
 

@@ -1,5 +1,7 @@
 (function(){
 	"use strict";
 	
-	var app = angular.module("shoppingCartApp", [])
+	var app = angular.module("shoppingCartApp", [
+        'ngStorage'
+      ]);
 }());

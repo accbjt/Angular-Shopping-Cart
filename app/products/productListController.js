@@ -13,6 +13,23 @@
 		});
 
 		vm.$storage = $localStorage;
+
+		// setup inCart local storage if it doesn't exist
+		if(!vm.$storage.inCart){
+			vm.$storage.inCart = {};
+		}
+
+		vm.addItemToCart = function(index){
+			var product = this.products[index];
+			var productInCart = vm.$storage.inCart[this.products[index].name];
+
+			if(productInCart){
+				productInCart.count = productInCart.count+1;
+			}else{
+				vm.$storage.inCart[this.products[index].name] = {indexId: index, count:1};
+			}
+		};
+
 	};
 
 }());

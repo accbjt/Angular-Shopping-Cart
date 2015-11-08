@@ -7,8 +7,12 @@
   <link rel="stylesheet" href="css/foundation.css" />
   <link rel="stylesheet" href="css/main.css" />
   <script src="js/vendor/modernizr.js"></script>
+  <script src="js/angular.min.js"></script>
+  <script src="js/angular-ui-router.js"></script>
+  <script src="app/app.js"></script>
+  <script src="app/products/productListController.js"></script>
 </head>
-  <body>
+  <body ng-app="shoppingCartApp">
 
     <div class="row">
       <div class="large-12 columns">
@@ -43,7 +47,7 @@
           </div>
         </div>
 
-        <div class="row shopping-cart-container">
+        <div class="row shopping-cart-container" ng-controller="ProductListController as vm">
           
           <div class="large-9 columns">
             <div class="row">
@@ -52,71 +56,26 @@
             	<h3>Products</h3>
             	</div>
               
-              <div class="large-4 small-6 columns">
-                <img src="http://placehold.it/1000x1000&text=Thumbnail">
-                
+              <div class="large-12 small-6 columns" ng-repeat="product in vm.products" >
                 <div class="panel">
-                  <h5>Item Name</h5>
-                  <h6 class="subheader">$000.00</h6>
-                  <input type="text" name="qty">
-                  <div class="button add-to-cart">Add to Cart</div>
+                	<div class="row">
+                		<img class="large-4 columns" ng-src="{{ product.image }}">
+                		<div class="large-8 columns">
+		                  <h5>Item Name</h5>
+		                  <p>{{ product.name }}</p>
+		                  <h5>Description</h5>
+		                  <p>{{ product.description }}</p>
+		                  <div class="submit-item-container row">
+		                  	<div class="large-4 columns">${{ product.price }}</div>
+		                  	<label class="large-1 columns">Qty.</label>
+		                  	<input class="large-2 columns" type="text" name="qty">
+		                  	<div class="button add-to-cart large-4 colums">Add to Cart</div>
+		                  </div>
+	                  </div>
+                	</div>
                 </div>
               </div>
               
-              <div class="large-4 small-6 columns">
-                <img src="http://placehold.it/1000x1000&text=Thumbnail">
-                
-                <div class="panel">
-                  <h5>Item Name</h5>
-                  <h6 class="subheader">$000.00</h6>
-                  <input type="text" name="qty">
-                  <div class="button add-to-cart">Add to Cart</div>
-                </div>
-              </div>
-              
-              <div class="large-4 small-6 columns">
-                <img src="http://placehold.it/1000x1000&text=Thumbnail">
-                
-                <div class="panel">
-                  <h5>Item Name</h5>
-                  <h6 class="subheader">$000.00</h6>
-                  <input type="text" name="qty">
-                  <div class="button add-to-cart">Add to Cart</div>
-                </div>
-              </div>
-              
-              <div class="large-4 small-6 columns">
-                <img src="http://placehold.it/1000x1000&text=Thumbnail">
-                
-                <div class="panel">
-                  <h5>Item Name</h5>
-                  <h6 class="subheader">$000.00</h6>
-                  <input type="text" name="qty">
-                  <div class="button add-to-cart">Add to Cart</div>
-                </div>
-              </div>
-              
-              <div class="large-4 small-6 columns">
-                <img src="http://placehold.it/1000x1000&text=Thumbnail">
-                
-                <div class="panel">
-                  <h5>Item Name</h5>
-                  <h6 class="subheader">$000.00</h6>
-                  <input type="text" name="qty">
-                  <div class="button add-to-cart">Add to Cart</div>
-                </div>
-              </div>
-              
-              <div class="large-4 small-6 columns">
-                <img src="http://placehold.it/1000x1000&text=Thumbnail">
-                
-                <div class="panel">
-                  <h5>Item Name</h5>
-                  <h6 class="subheader">$000.00</h6>
-                  <input type="text" name="qty">
-                  <div class="button add-to-cart">Add to Cart</div>
-                </div>
-              </div>
             </div>
           </div>
           <div class="large-3 small-12 columns">
@@ -156,8 +115,6 @@
     </div>
       
   <script src="js/vendor/jquery.js"></script>
-  <script src="js/angular.min.js"></script>
-  <script src="js/angular-ui-router.js"></script>
   <script src="js/foundation.min.js"></script>
   <script>
     $(document).foundation();

@@ -48,3 +48,12 @@
 .remove-item {
 	margin-left: 10px;
 }
+
+.submit-item-container {
+	position: relative;
+  bottom: -30px;
+}
+
+.submit-item-container label{
+	margin: 0px 10px;
+}

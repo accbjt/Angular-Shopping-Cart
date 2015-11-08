@@ -13,7 +13,6 @@
 		});
 
 		vm.$storage = $localStorage;
-
 	};
 
 }());

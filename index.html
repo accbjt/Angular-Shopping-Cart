@@ -12,6 +12,7 @@
   <script src="js/ngStorage.min.js"></script>
   <script src="app/app.js"></script>
   <script src="app/products/productListController.js"></script>
+  <script src="app/products/shoppingCartController.js"></script>
 </head>
   <body ng-app="shoppingCartApp">
 
@@ -85,7 +86,7 @@
               
             </div>
           </div>
-          <div class="large-3 small-12 columns">
+          <div ng-controller="ShoppingCartController as vm" class="large-3 small-12 columns">
           	<div class="hide-for-small panel">
           		<h3>Shopping Cart</h3>
           	</div>
@@ -106,11 +107,12 @@
         			</div>
         		</div>
 
-        		<div class="panel callout radius">
-        			<div class="">
+        		<div ng-repeat="product in vm.inCart" class="panel callout radius">
+        			<div>
         				<h5>Item Name</h5>
-        				<h6 class="subheader">$000.00</h6>
-        				<input type="text" name="qty">
+        				<p>{{ product.name }}</p>
+        				<h6 class="subheader">${{ product.price }}</h6>
+        				<input type="text" name="qty" value="1">
         				<div class="button update-qty">Update Qty</div>
         				<div class="button alert remove-item">Remove Item</div>
         			</div>

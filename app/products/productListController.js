@@ -19,16 +19,18 @@
 			vm.$storage.inCart = {};
 		}
 
-		vm.addItemToCart = function(index){
+		vm.addItemToCart = function(e, index){
 			var product = this.products[index];
 			var productInCart = vm.$storage.inCart[this.products[index].name];
+			var qty = e.currentTarget.previousElementSibling;
 
 			if(productInCart){
-				productInCart.count = productInCart.count+1;
+				productInCart.count = productInCart.count+qty.value;
 			}else{
-				vm.$storage.inCart[this.products[index].name] = {indexId: index, count:1};
+				vm.$storage.inCart[this.products[index].name] = {indexId: index, count:qty.value};
 			}
 
+			qty.value = "1";
 			$scope.$parent.$broadcast('test');
 		};
 

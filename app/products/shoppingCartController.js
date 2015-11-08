@@ -12,7 +12,9 @@
 
 		$http.get('Products.json').success(function(data) {
    		vm.products = data.products;
-   		updateVmValues();
+   		if(Object.keys(vm.$storage.inCart).length > 0){
+   			updateVmValues();
+   		}
 		});
 
 		$scope.$on('test', function(e, stuff){
@@ -23,7 +25,9 @@
 		vm.removeItem = function(item){
 			delete vm.$storage.inCart[item];
 			vm.inCart = createInCartProducts();
-			updateVmValues();
+			if(Object.keys(vm.$storage.inCart).length > 0){
+   			updateVmValues();
+   		}
 		};
 
 		function updateVmValues(){

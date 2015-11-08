@@ -27,13 +27,27 @@
 			return products;
 		};
 
+		vm.itemCount = function(){
+			var items = vm.inCart.map(function(item){
+				return item.count
+			});
+
+			items = items.reduce(function(previousValue, currentValue, index, array) {
+				return previousValue + currentValue;
+			});
+
+			return items
+		};
+
 		$http.get('Products.json').success(function(data) {
    		vm.products = data.products;
    		vm.inCart = vm.createInCartProducts();
+   		vm.totalItemCount = vm.itemCount();
 		});
 
 		$scope.$on('test', function(e, stuff){
 			vm.inCart = vm.createInCartProducts();
+			vm.totalItemCount = vm.itemCount();
 		});
 
 	};

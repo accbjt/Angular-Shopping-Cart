@@ -9,18 +9,10 @@
 		var vm = this;
 
 		vm.$storage = $localStorage;
-		vm.inCart = [];
 
-		$http.get('Products.json').success(function(data) {
-   		vm.products = data.products;
- 			createInCartProducts();
-		});
+		vm.createInCartProducts = function(){
+			var products = [];
 
-		$scope.$on('test', function(e, stuff){
-			createInCartProducts();
-		});
-
-		function createInCartProducts(){
 			for (var property in vm.$storage.inCart) {
 				var inCart = vm.$storage.inCart;
 
@@ -28,10 +20,21 @@
 					var product = vm.products[inCart[property].indexId];
 
 					product.count = inCart[property].count;
-					vm.inCart.push(product);
+					products.push(product);
 				}
 			}
+
+			return products;
 		};
+
+		$http.get('Products.json').success(function(data) {
+   		vm.products = data.products;
+   		vm.inCart = vm.createInCartProducts();
+		});
+
+		$scope.$on('test', function(e, stuff){
+			vm.inCart = vm.createInCartProducts();
+		});
 
 	};
 

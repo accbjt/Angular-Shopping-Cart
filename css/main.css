@@ -57,3 +57,12 @@
 .submit-item-container label{
 	margin: 0px 10px;
 }
+
+.tag {
+  padding: 6px;
+  background-color: #FFFFFF;
+  position: relative;
+  top: 20px;
+  margin-right: 10px;
+  border-radius: 15px;
+}

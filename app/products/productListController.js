@@ -25,9 +25,9 @@
 			var qty = e.currentTarget.previousElementSibling;
 
 			if(productInCart){
-				productInCart.count = productInCart.count+qty.value;
+				productInCart.count = parseInt(productInCart.count)+parseInt(qty.value);
 			}else{
-				vm.$storage.inCart[this.products[index].name] = {indexId: index, count:qty.value};
+				vm.$storage.inCart[this.products[index].name] = {indexId: index, count:parseInt(qty.value)};
 			}
 
 			qty.value = "1";

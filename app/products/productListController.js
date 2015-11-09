@@ -19,6 +19,12 @@
 			vm.$storage.inCart = {};
 		}
 
+		$scope.tags = [
+			{ text: "Hygiene" },
+			{ text: "Towel" },
+			{ text: "Shower" }
+		];
+
 		vm.addItemToCart = function(e, index){
 			var product = this.products[index];
 			var productInCart = vm.$storage.inCart[this.products[index].name];

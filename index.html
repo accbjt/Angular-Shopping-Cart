@@ -10,6 +10,8 @@
   <script src="js/angular.min.js"></script>
   <script src="js/angular-ui-router.js"></script>
   <script src="js/ngStorage.min.js"></script>
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/ng-tags-input/2.0.1/ng-tags-input.min.css" />
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/ng-tags-input/2.0.1/ng-tags-input.min.js"></script>
   <script src="app/app.js"></script>
   <script src="app/products/productListController.js"></script>
   <script src="app/products/shoppingCartController.js"></script>
@@ -57,8 +59,10 @@
             	<div class="hide-for-small panel">
             	<h3>Products</h3>
             	</div>
+
+            	<tags-input ng-model="tags"></tags-input>
               
-              <div class="large-12 small-6 columns" ng-repeat="product in vm.products" >
+              <div class="large-12 small-6 columns" ng-repeat="product in vm.products | filterByTags:tags" >
                 <div class="panel">
                 	<div class="row">
                 		<div class="large-4 columns">
@@ -102,7 +106,7 @@
         			</div>
         		</div>
 
-        		<div ng-repeat="product in vm.inCart" class="panel callout radius">
+        		<div ng-repeat="product in vm.inCart | filter: Hygiene" class="panel callout radius">
         			<div>
         				<h5>Item Name</h5>
         				<p>{{ product.name }}</p>

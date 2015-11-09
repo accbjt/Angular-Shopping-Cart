@@ -78,7 +78,8 @@
 		                  <p>{{ product.description }}</p>
 		                  <div class="submit-item-container row">
 		                  	<div class="large-4 columns">Available: {{ product.qtyAvailable }}</div>
-		                  	<div class="large-2 columns">${{ product.price }}</div>
+		                  	<div class="large-2 columns" style="{{ vm.discountOnPrice(product) }}">${{ product.price }}</div>
+		                  	<div class="large-2 columns" ng-show="vm.discount(product)">${{ vm.discountedPrice(product) }}</div>
 		                  	<label class="large-1 columns">Qty.</label>
 		                  	<input class="large-2 columns" type="text" value="1" name="qty">
 		                  	<div class="button add-to-cart large-4 colums" ng-click="vm.addItemToCart($event, $index)" >Add to Cart</div>
@@ -100,7 +101,7 @@
         				<p>Total Items: {{ vm.totalItemCount }}</p>
         				<p>Subtotal: ${{ vm.subtotal }}</p>
         				<p>Shipping Charges: ${{ vm.shippingCharge }}</p>
-        				<p>Tax 8.75%: ${{ vm.shippingCharge }}</p>
+        				<p>Tax 8.75%: ${{ vm.taxCharge }}</p>
         				<p>Total Amount: ${{ vm.totalAmount }}</p>
         				<div class="button checkout">Checkout</div>
         			</div>

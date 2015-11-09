@@ -12,12 +12,10 @@
 
 		$http.get('Products.json').success(function(data) {
    		vm.products = data.products;
-   		if(Object.keys(vm.$storage.inCart).length > 0){
-   			updateVmValues();
-   		}
+   		updateVmValues();
 		});
 
-		$scope.$on('test', function(e, stuff){
+		$scope.$on('updateCart', function(e, stuff){
 			vm.inCart = createInCartProducts();
 			updateVmValues();
 		});
@@ -32,18 +30,26 @@
 		vm.removeItem = function(item){
 			delete vm.$storage.inCart[item];
 			vm.inCart = createInCartProducts();
-			if(Object.keys(vm.$storage.inCart).length > 0){
-   			updateVmValues();
-   		}
+   		updateVmValues();
 		};
 
 		function updateVmValues(){
-			vm.inCart = createInCartProducts();
-   		vm.totalItemCount = itemCount();
-   		vm.subtotal = subtotal();
-   		vm.shippingCharge = 8.00;
-   		vm.taxCharge = taxCharge();
-   		vm.totalAmount = totalAmount();
+			var isCartNotEmpty = Object.keys(vm.$storage.inCart).length > 0;
+
+			if(isCartNotEmpty){
+				vm.inCart = createInCartProducts();
+   			vm.totalItemCount = itemCount();
+   			vm.subtotal = subtotal();
+   			vm.shippingCharge = 8.00;
+   			vm.taxCharge = taxCharge();
+   			vm.totalAmount = totalAmount();
+			}else{
+	   		vm.totalItemCount = 0
+	   		vm.subtotal = 0.00;
+	   		vm.shippingCharge = 0.00;
+	   		vm.taxCharge = 0.00;
+	   		vm.totalAmount = 0.00;
+			}
 		};
 
 		function createInCartProducts(){
